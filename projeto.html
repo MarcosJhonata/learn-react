@@ -65,13 +65,14 @@
             )
          }
 
-         function Input({children, className, placeholder,  ...props}) {
+         function Input({children, placeholder,  ...props}) {
             return (
                 <div>
                     <input 
                     className="bg-gray-400" 
                     type="text"
                     placeholder={placeholder}
+                    {...props}
                     /> 
                    
                 </div>
@@ -79,21 +80,40 @@
 
          }
 
-         function Card() {
-
+         function Card({children, className, ...props}) {
+            return (
+                <div className=" flex flex-col items-center justify-center w-80 h-80 gap-3 bg-blue-300 rounded
+                "
+                {...props}
+                >
+                 <Text>CRIAR CONTA</Text>
+                 {children}  
+                </div>
+            )
          }
 
          function RegisterForm() {
+            return (
+                <Card> 
 
+                  <form className="flex flex-col gap-3 items-center ">
+                    <Input placeholder="Digite seu nome"/>
+                    <Input placeholder="Digite seu Email"/> 
+                    <Input type="password" placeholder="Digite sua senha"/>
+                    <Input type="password" placeholder="Confirmar senha"/>
+                    <Button type="submit" className="px-2">Cadastrar</Button> 
+                    <Text>Já tem uma conta? Entrar.</Text> 
+                    </form>
+                   
+                </Card>   
+                    
+            )
          }
 
          function App() {
             return (
-                <main class=" flex flex-col items-center justify-center p-3 gap-3"> 
-                    <Input placeholder="Digite seu nome"/>
-                    <Input placeholder="Digite seu Email"/> 
-                    <Input placeholder="Digite sua senha"/>
-                    <Button className="px-2">Cadastrar</Button> 
+                <main className=" flex justify-center items-center p-30 gap-3"> 
+                    <RegisterForm />
                 </main>    
             )
         }
