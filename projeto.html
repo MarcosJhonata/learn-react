@@ -82,7 +82,7 @@
 
          function Card({children, className, ...props}) {
             return (
-                <div className=" flex flex-col items-center justify-center w-80 h-80 gap-3 bg-blue-300 rounded
+                <div className=" flex flex-col items-center justify-center w-90 h-90 gap-3 bg-blue-300 rounded
                 "
                 {...props}
                 >
@@ -93,14 +93,58 @@
          }
 
          function RegisterForm() {
+            const [nome, setNome] = React.useState('');
+            const [email, setEmail] = React.useState('');
+            const [senha, setSenha] = React.useState('');
+            const [confirmarSenha, setconfirmarSenha] = React.useState('');
+            const [cadastrado, setCadastrado] = React.useState(false);
+            function handleSubmit(event){
+                event.preventDefault()
+
+                if (nome === '') {
+                    alert("Digite o nome")
+                    return
+                }
+                if (email === '') {
+                    alert("Digite o email")
+                    return
+                }
+                
+                if (senha === '') {
+                    alert("Digite uma senha")
+                    return
+                }
+                
+                if (confirmarSenha != senha || confirmarSenha === '' ) {
+                    alert("Senha Incorreta")
+                }
+                setCadastrado(true)
+    
+            }
+            
+
+            if (cadastrado) {
+                   return(
+                    <Card> 
+                    <Text> 
+                    {`Seu cadastro foi feito com sucesso, 
+                    bem-vindo ${nome},
+                    Seu email cadastrado é: ${email}`}
+                    </Text> 
+                    <Button onClick={() => setCadastrado(false)}>VOLTAR</Button>  
+                    </Card>
+                   ) 
+                    }
             return (
+           
                 <Card> 
 
-                  <form className="flex flex-col gap-3 items-center ">
-                    <Input placeholder="Digite seu nome"/>
-                    <Input placeholder="Digite seu Email"/> 
-                    <Input type="password" placeholder="Digite sua senha"/>
-                    <Input type="password" placeholder="Confirmar senha"/>
+                  <form onSubmit={handleSubmit} className="flex flex-col gap-3 items-center ">
+                    <Input placeholder="Digite seu nome" value={nome} onChange={(e) => setNome(e.target.value)} />
+                    <Input type="email" placeholder="Digite seu Email" value={email} onChange={(e) => setEmail(e.target.value)}/> 
+                    <Input type="password" placeholder="Digite sua senha" value={senha} onChange={(e) => setSenha(e.target.value)}/>
+                    <Input type="password" placeholder="Confirmar senha" value={confirmarSenha} 
+                    onChange={(e) => setconfirmarSenha(e.target.value)}/>
                     <Button type="submit" className="px-2">Cadastrar</Button> 
                     <Text>Já tem uma conta? Entrar.</Text> 
                     </form>
