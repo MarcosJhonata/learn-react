@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de clientes</title>
+</head>
+<body>
+    <div id="root" class=""></div>
+
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+         
+         const textVariants = {
+            default: 'text-xl text-black',
+            red: 'text-xl text-red-500'
+         }
+
+         function Text({
+            as= 'span',
+            variant = 'default',
+            className,
+            children,
+            ...props
+         }) {
+            return React.createElement(
+                as, 
+                {
+                    className: `${textVariants[variant]} ${className ? className : ''}`,
+                    ...props,
+                },
+                children
+            )
+         }
+
+         const buttonVariants = {
+            default: 'bg-blue-500',
+            primary: 'bg-blue-300'
+         }
+
+         function Button({
+            variant = 'default',
+            className,
+            children,
+            ...props
+         }) {
+            return (
+                <Text
+                as="button"
+                variant="default"
+                className={`
+                    flex items-center justify-center rounded
+                    p-3 cursor-pointer
+                    ${buttonVariants[variant]}
+                    ${className ? className : ''}
+                    `}
+                    {...props}
+                >
+                    {children}
+                </Text>
+            )
+         }
+
+         function Input({children, className, placeholder,  ...props}) {
+            return (
+                <div>
+                    <input 
+                    className="bg-gray-400" 
+                    type="text"
+                    placeholder={placeholder}
+                    /> 
+                   
+                </div>
+            )
+
+         }
+
+         function Card() {
+
+         }
+
+         function RegisterForm() {
+
+         }
+
+         function App() {
+            return (
+                <main class=" flex flex-col items-center justify-center p-3 gap-3"> 
+                    <Input placeholder="Digite seu nome"/>
+                    <Input placeholder="Digite seu Email"/> 
+                    <Input placeholder="Digite sua senha"/>
+                    <Button className="px-2">Cadastrar</Button> 
+                </main>    
+            )
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />)
+
+    </script>
+    
+</body>
+</html>
