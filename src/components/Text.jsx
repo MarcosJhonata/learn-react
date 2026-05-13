@@ -1,3 +1,5 @@
+import React from 'react';
+
 const textVariants = {
   default: 'text-xl text-black',
   red: 'text-xl text-red-500',

@@ -1,3 +1,4 @@
+import React from 'react';
 import Text from './Text.jsx';
 
 export default function Card({ children, className = '', ...props }) {
